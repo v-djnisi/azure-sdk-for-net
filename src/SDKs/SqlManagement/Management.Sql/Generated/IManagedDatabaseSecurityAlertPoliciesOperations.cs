@@ -19,23 +19,24 @@ namespace Microsoft.Azure.Management.Sql
     using System.Threading.Tasks;
 
     /// <summary>
-    /// RecommendedElasticPoolsOperations operations.
+    /// ManagedDatabaseSecurityAlertPoliciesOperations operations.
     /// </summary>
-    public partial interface IRecommendedElasticPoolsOperations
+    public partial interface IManagedDatabaseSecurityAlertPoliciesOperations
     {
         /// <summary>
-        /// Gets a recommended elastic pool.
+        /// Gets a managed database's security alert policy.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the resource group that contains the resource. You can
         /// obtain this value from the Azure Resource Manager API or the
         /// portal.
         /// </param>
-        /// <param name='serverName'>
-        /// The name of the server.
+        /// <param name='managedInstanceName'>
+        /// The name of the managed instance.
         /// </param>
-        /// <param name='recommendedElasticPoolName'>
-        /// The name of the recommended elastic pool to be retrieved.
+        /// <param name='databaseName'>
+        /// The name of the managed database for which the security alert
+        /// policy is defined.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -52,17 +53,24 @@ namespace Microsoft.Azure.Management.Sql
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<RecommendedElasticPool>> GetWithHttpMessagesAsync(string resourceGroupName, string serverName, string recommendedElasticPoolName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<ManagedDatabaseSecurityAlertPolicy>> GetWithHttpMessagesAsync(string resourceGroupName, string managedInstanceName, string databaseName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Returns recommended elastic pools.
+        /// Creates or updates a database's security alert policy.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the resource group that contains the resource. You can
         /// obtain this value from the Azure Resource Manager API or the
         /// portal.
         /// </param>
-        /// <param name='serverName'>
-        /// The name of the server.
+        /// <param name='managedInstanceName'>
+        /// The name of the managed instance.
+        /// </param>
+        /// <param name='databaseName'>
+        /// The name of the managed database for which the security alert
+        /// policy is defined.
+        /// </param>
+        /// <param name='parameters'>
+        /// The database security alert policy.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -79,36 +87,6 @@ namespace Microsoft.Azure.Management.Sql
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<IEnumerable<RecommendedElasticPool>>> ListByServerWithHttpMessagesAsync(string resourceGroupName, string serverName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Returns recommended elastic pool metrics.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the resource group that contains the resource. You can
-        /// obtain this value from the Azure Resource Manager API or the
-        /// portal.
-        /// </param>
-        /// <param name='serverName'>
-        /// The name of the server.
-        /// </param>
-        /// <param name='recommendedElasticPoolName'>
-        /// The name of the recommended elastic pool to be retrieved.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="Microsoft.Rest.Azure.CloudException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="Microsoft.Rest.SerializationException">
-        /// Thrown when unable to deserialize the response
-        /// </exception>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        Task<AzureOperationResponse<IEnumerable<RecommendedElasticPoolMetric>>> ListMetricsWithHttpMessagesAsync(string resourceGroupName, string serverName, string recommendedElasticPoolName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<ManagedDatabaseSecurityAlertPolicy>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string managedInstanceName, string databaseName, ManagedDatabaseSecurityAlertPolicy parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

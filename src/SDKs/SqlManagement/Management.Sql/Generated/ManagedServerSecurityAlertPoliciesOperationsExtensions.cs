@@ -13,18 +13,16 @@ namespace Microsoft.Azure.Management.Sql
     using Microsoft.Rest;
     using Microsoft.Rest.Azure;
     using Models;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Extension methods for RecommendedElasticPoolsOperations.
+    /// Extension methods for ManagedServerSecurityAlertPoliciesOperations.
     /// </summary>
-    public static partial class RecommendedElasticPoolsOperationsExtensions
+    public static partial class ManagedServerSecurityAlertPoliciesOperationsExtensions
     {
             /// <summary>
-            /// Gets a recommended elastic pool.
+            /// Get a managed server's threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -33,19 +31,16 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
             /// </param>
-            /// <param name='recommendedElasticPoolName'>
-            /// The name of the recommended elastic pool to be retrieved.
-            /// </param>
-            public static RecommendedElasticPool Get(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName, string recommendedElasticPoolName)
+            public static ManagedServerSecurityAlertPolicy Get(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName)
             {
-                return operations.GetAsync(resourceGroupName, serverName, recommendedElasticPoolName).GetAwaiter().GetResult();
+                return operations.GetAsync(resourceGroupName, managedInstanceName).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Gets a recommended elastic pool.
+            /// Get a managed server's threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -54,25 +49,22 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
-            /// </param>
-            /// <param name='recommendedElasticPoolName'>
-            /// The name of the recommended elastic pool to be retrieved.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<RecommendedElasticPool> GetAsync(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName, string recommendedElasticPoolName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<ManagedServerSecurityAlertPolicy> GetAsync(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetWithHttpMessagesAsync(resourceGroupName, serverName, recommendedElasticPoolName, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetWithHttpMessagesAsync(resourceGroupName, managedInstanceName, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
             }
 
             /// <summary>
-            /// Returns recommended elastic pools.
+            /// Creates or updates a threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -81,16 +73,19 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
             /// </param>
-            public static IEnumerable<RecommendedElasticPool> ListByServer(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName)
+            /// <param name='parameters'>
+            /// The managed server security alert policy.
+            /// </param>
+            public static ManagedServerSecurityAlertPolicy CreateOrUpdate(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName, ManagedServerSecurityAlertPolicy parameters)
             {
-                return operations.ListByServerAsync(resourceGroupName, serverName).GetAwaiter().GetResult();
+                return operations.CreateOrUpdateAsync(resourceGroupName, managedInstanceName, parameters).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Returns recommended elastic pools.
+            /// Creates or updates a threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -99,22 +94,25 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
+            /// </param>
+            /// <param name='parameters'>
+            /// The managed server security alert policy.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IEnumerable<RecommendedElasticPool>> ListByServerAsync(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<ManagedServerSecurityAlertPolicy> CreateOrUpdateAsync(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName, ManagedServerSecurityAlertPolicy parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListByServerWithHttpMessagesAsync(resourceGroupName, serverName, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CreateOrUpdateWithHttpMessagesAsync(resourceGroupName, managedInstanceName, parameters, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
             }
 
             /// <summary>
-            /// Returns recommended elastic pool metrics.
+            /// Creates or updates a threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -123,19 +121,19 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
             /// </param>
-            /// <param name='recommendedElasticPoolName'>
-            /// The name of the recommended elastic pool to be retrieved.
+            /// <param name='parameters'>
+            /// The managed server security alert policy.
             /// </param>
-            public static IEnumerable<RecommendedElasticPoolMetric> ListMetrics(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName, string recommendedElasticPoolName)
+            public static ManagedServerSecurityAlertPolicy BeginCreateOrUpdate(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName, ManagedServerSecurityAlertPolicy parameters)
             {
-                return operations.ListMetricsAsync(resourceGroupName, serverName, recommendedElasticPoolName).GetAwaiter().GetResult();
+                return operations.BeginCreateOrUpdateAsync(resourceGroupName, managedInstanceName, parameters).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Returns recommended elastic pool metrics.
+            /// Creates or updates a threat detection policy.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -144,18 +142,18 @@ namespace Microsoft.Azure.Management.Sql
             /// The name of the resource group that contains the resource. You can obtain
             /// this value from the Azure Resource Manager API or the portal.
             /// </param>
-            /// <param name='serverName'>
-            /// The name of the server.
+            /// <param name='managedInstanceName'>
+            /// The name of the managed instance.
             /// </param>
-            /// <param name='recommendedElasticPoolName'>
-            /// The name of the recommended elastic pool to be retrieved.
+            /// <param name='parameters'>
+            /// The managed server security alert policy.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IEnumerable<RecommendedElasticPoolMetric>> ListMetricsAsync(this IRecommendedElasticPoolsOperations operations, string resourceGroupName, string serverName, string recommendedElasticPoolName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<ManagedServerSecurityAlertPolicy> BeginCreateOrUpdateAsync(this IManagedServerSecurityAlertPoliciesOperations operations, string resourceGroupName, string managedInstanceName, ManagedServerSecurityAlertPolicy parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListMetricsWithHttpMessagesAsync(resourceGroupName, serverName, recommendedElasticPoolName, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.BeginCreateOrUpdateWithHttpMessagesAsync(resourceGroupName, managedInstanceName, parameters, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
